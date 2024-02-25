@@ -1,0 +1,10 @@
+target/
+*.hwcache/
+.classpath
+.settings
+.project
+.factorypath
+.codenvy
+*.iml
+.idea/
+*.hprof
