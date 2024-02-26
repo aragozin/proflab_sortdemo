@@ -11,7 +11,7 @@ public class SortDemo2 {
 
     public static void main(String... args) {
 
-        int size = 2 << 10;
+        int size = 1 << 10;
         if (args.length > 0) {
             size = Integer.parseInt(args[0]);
         }
@@ -27,10 +27,16 @@ public class SortDemo2 {
 
     private static void doSort(StringSorter2 ss) {
         long ts = System.nanoTime();
-        for (int i = 0; i != 100; ++i) {
+        int i;
+        for (i = 0; i != 100; ++i) {
             order = ss.order();
+            long timeNS = System.nanoTime() - ts;
+            if (timeNS > TimeUnit.SECONDS.toNanos(5)) {
+                ++i;
+                break;
+            }
         }
         long timeNS = System.nanoTime() - ts;
-        System.out.println(String.format("Average sort time %.2fms (100 iterations)", 0.01d * timeNS / TimeUnit.MILLISECONDS.toNanos(1)));
+        System.out.println(String.format("Average sort time %.2fms (%d iterations)", 1d * timeNS / i / TimeUnit.MILLISECONDS.toNanos(1), i));
     }
 }

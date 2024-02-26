@@ -2,6 +2,8 @@ package info.ragozin.proflab.sortdemo;
 
 public class StringSorter1 extends ArraySorter1<String> {
 
+    private volatile int factor = 1;
+
     private final String[] array;
 
     public StringSorter1(String[] array) {
@@ -20,8 +22,19 @@ public class StringSorter1 extends ArraySorter1<String> {
 
     @Override
     protected int keysCompare(String a, String b) {
-        return a.compareTo(b);
+        int ch = 0;
+        while(true) {
+            ch += strCmp(a, b);
+            if (factor > 0) {
+                break;
+            }
+        }
+        return ch;
     }
+
+	private int strCmp(String a, String b) {
+		return a.compareTo(b);
+	}
 
     public int[] order() {
         return order(0, array.length);

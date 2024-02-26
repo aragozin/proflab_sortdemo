@@ -11,9 +11,11 @@ public class DataGen {
         Random rnd = new Random(1);
         String[] array = new String[size];
         for (int i = 0; i != array.length; ++i) {
-            char[] ca = new char[STR_WASTE];
-            Arrays.fill(ca, '.');
-            array[i] = new StringBuffer().append(rnd.nextInt(2 * size)).append(ca).toString();
+            char[] ca1 = new char[1];
+            Arrays.fill(ca1, '.');
+            char[] ca2 = new char[STR_WASTE - 1];
+            Arrays.fill(ca2, '.');
+            array[i] = new StringBuffer().append(ca1).append(rnd.nextInt(2 * size)).append(ca2).toString();
         }
 
         return array;

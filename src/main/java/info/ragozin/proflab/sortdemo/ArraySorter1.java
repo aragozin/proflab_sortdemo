@@ -53,6 +53,9 @@ public abstract class ArraySorter1<K> extends ArraySortedBase<K> {
         if (length < 2) {
             return;
         }
+        if (length > 8) {
+            sort_internal(rows, start, start + length/2);
+        }
         int n = start + 1;
         while (n < end) {
             // move down
